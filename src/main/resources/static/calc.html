@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS-JQ-Ex</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function drawDiv(x,y,l,h,c,t,i)
+        {
+            document.write(
+                "<div id=" + i + " style='left:" +
+                x + "px;top:" + y + "px;width:" + l +
+                "px;height:" + h + "px;background:" +
+                c + ";position:absolute;padding:10px'>" + t + "</div>"
+            );
+        };
+        function addInput(idDiv,idInp,type,caption)
+        {
+            var keep = $("#"+idDiv).html()
+            $("#"+idDiv).html(keep + "<br><input type="+ type+
+                " id=" + idInp + " value=" + caption + "></input>");
+        }
+        $(document).ready(function(){
+
+            $("#add").click(function(){
+                $.post("http://localhost:8080/miniCalc/calc",
+                    {
+                        operandA:$("#opA").val(),
+                        operandB:$("#opB").val()
+                    },
+                    function(data,status) {
+                        $("#res").html("Result<br><b>"+data+"</b>");
+                    });
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <script>
+        drawDiv(20,20,200,50,"lightblue","Operand A","d1");
+        drawDiv(250,20,200,50,"lightgreen","Operand B","d2");
+        drawDiv(480,20,60,50,"#f2b4f6","Operation","d3");
+        drawDiv(570,20,200,50,"#f4db5f","Result","res");
+        addInput("d1","opA","text","68");
+        addInput("d2","opB","text","59");
+        addInput("d3","add","button","add");
+    </script>
+  </body>
+</html>
