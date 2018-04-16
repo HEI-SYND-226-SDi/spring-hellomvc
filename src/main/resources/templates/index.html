@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello Spring MVC</title>
+    <link rel="stylesheet" href="/site.css">
+  </head>
+  <body>
+    <h1 th:text="'Hello ' + ${name} +'.'">Hello stranger!</h1>
+    <p>
+      Site viewed <span th:text="${count}">0</span> times.
+    </p>
+  </body>
+</html>
